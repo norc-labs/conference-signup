@@ -1,0 +1,86 @@
+repositories {
+      maven { url 'http://clojars.org/repo' }
+}
+
+buildscript {
+    repositories {
+      mavenCentral()
+      jcenter()
+      maven { url 'http://clojars.org/repo' }
+    }
+    dependencies {
+        classpath 'com.google.appengine:gradle-appengine-plugin:1.9.28'
+	classpath 'clojuresque:clojuresque:1.7.0'
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    repositories { mavenCentral() }
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'appengine'
+apply plugin: 'clojure'
+
+sourceCompatibility = rootProject.ext.sourceCompat
+targetCompatibility = rootProject.ext.targetCompat
+
+configurations.all {
+    // check for updates every build - required to get latest SNAPSHOTs from clojars
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+
+dependencies {
+    appengineSdk 'com.google.appengine:appengine-java-sdk:1.9.30'
+    compile 'com.google.appengine:appengine-api-1.0-sdk:1.9.26'
+    compile 'com.google.appengine:appengine-api-labs:1.9.27'
+    compile 'javax.servlet:servlet-api:2.5'
+    //compile 'javax.mail:javax.mail-api:1.5.4'
+    //compile 'javax.mail:mail:1.5.0-b01'
+
+    compile 'org.clojure:clojure:1.7.0'
+    compile 'org.clojure:core.async:0.2.374'
+    compile 'org.clojure:tools.reader:0.8.16'
+    compile 'org.clojure:tools.logging:0.2.3'
+    compile 'org.slf4j:slf4j-log4j12:1.7.1'
+    compile 'log4j:log4j:1.2.17'
+    compile 'ns-tracker:ns-tracker:0.3.0'
+
+    compile 'miraj:miraj:1.1.4-SNAPSHOT'
+    compile 'polymer:iron:1.2.3-SNAPSHOT'
+    compile 'polymer:neon:1.2.3-SNAPSHOT'
+    compile 'polymer:paper:1.2.3-SNAPSHOT'
+    compile 'polymer:support:1.2.3-SNAPSHOT'
+    compile 'miraj:markup:0.1.0-SNAPSHOT'
+
+    compile 'metosin:compojure-api:0.22.0'
+    compile 'ring:ring-core:1.4.0'
+    compile 'ring:ring-devel:1.4.0'
+    compile 'ring:ring-servlet:1.4.0'
+    compile 'ring:ring-defaults:0.1.5'
+    compile 'fogus:ring-edn:0.2.0'
+
+    compile 'hiccup:hiccup:1.0.5'
+    // compile 'org.mobileink:migae.datastore:0.3.2-SNAPSHOT'
+}
+
+appengine {
+    daemon = false
+    httpAddress = '0.0.0.0'  // for android testing
+    httpPort = 8088
+    // jvmFlags =
+    downloadSdk = true
+    // appcfg {
+    //     oauth2 = true
+    // }
+    // logs {
+    //     outputFile = file('gae.sparky.log')
+    // }
+}
+
+clojure {
+    warnOnReflection = false
+    aotCompile = false
+}

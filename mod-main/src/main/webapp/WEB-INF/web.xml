@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<web-app
+    version="2.5"
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+  <!-- #################### -->
+  <!-- <filter-mapping> -->
+  <!--   <url-pattern>/dev</url-pattern> -->
+  <!--   <filter-name>reload-filter</filter-name> -->
+  <!-- </filter-mapping> -->
+  <!-- <filter> -->
+  <!--   <filter-name>reload-filter</filter-name> -->
+  <!--   <filter-class>datafab.reloader</filter-class> -->
+  <!-- </filter> -->
+
+  <!-- <filter-mapping> -->
+  <!--   <url-pattern>/dump</url-pattern> -->
+  <!--   <filter-name>reload-filter</filter-name> -->
+  <!-- </filter-mapping> -->
+  <!-- <filter> -->
+  <!--   <filter-name>reload-filter</filter-name> -->
+  <!--   <filter-class>datafab.reloader</filter-class> -->
+  <!-- </filter> -->
+
+  <!-- #################### -->
+  <servlet-mapping>
+    <url-pattern>/*</url-pattern>
+    <servlet-name>config</servlet-name>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>config</servlet-name>
+    <servlet-class>config</servlet-class>
+  </servlet>
+
+  <!-- #################### -->
+  <servlet-mapping>
+    <url-pattern>/_ah/mail/*</url-pattern>
+    <servlet-name>Mailhandler</servlet-name>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Mailhandler</servlet-name>
+    <servlet-class>datafab.mailhandler</servlet-class>
+  </servlet>
+
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>mail</web-resource-name>
+      <url-pattern>/_ah/mail/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>admin</role-name>
+    </auth-constraint>
+  </security-constraint>
+
+  <!-- #################### -->
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+
+  <!-- #################### -->
+  <error-page>
+    <error-code>404</error-code>
+    <location>/404.html</location>
+  </error-page>
+
+</web-app>

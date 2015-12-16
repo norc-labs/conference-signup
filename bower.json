@@ -1,0 +1,26 @@
+{
+  "name": "datafab2016",
+  "authors": [
+    "Gregg Reynolds <reynolds-gregg@norc.org>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "mod-main/src/main/webapp/polymer",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+      "polymer": "Polymer/polymer#~1.2.3",
+      "iron-elements": "PolymerElements/iron-elements#latest",
+      "neon-elements": "PolymerElements/neon-elements#latest",
+      "paper-elements": "PolymerElements/neon-elements#latest"
+  }
+}
