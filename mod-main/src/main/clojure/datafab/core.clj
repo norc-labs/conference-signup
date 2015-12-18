@@ -33,34 +33,6 @@
 
 ;; (println "datafab.core metadata: " (meta (find-ns 'datafab.core)))
 
-(defn application
-  [^:? applicant-name ^:? affiliation
-   ^:? address1 ^:? address2 ^:? city ^:? state  ^:? zip
-   ^:? email
-   ^:? interest ^:? comments]
-  (let [id (rand-int 1000000)
-        hdr (str "#ID,applicant-name,address1,address2,city,state,zip,email,affiliation,interest,comments")
-        body (str/join "," [id applicant-name address1 address2 city state zip email affiliation interest comments])
-        msg-body (str hdr "\n" body)]
-    ;; (println "MSG:")
-    ;; (println msg-body)
-    (let [props (java.util.Properties.)
-          session (javax.mail.Session/getDefaultInstance props nil)]
-      (try
-        (let [msg (doto (MimeMessage. session)
-                    (.setFrom (InternetAddress. "admin@datafab2016.appspotmail.com" "DataFab2016 Admin"))
-                    (.addRecipient Message$RecipientType/TO
-                                   (InternetAddress. "norc.datafab2016@gmail.com", "DataFab2016 Admin"))
-                    (.setSubject "datafab2016 website test")
-                    (.setText msg-body))]
-          (Transport/send msg))
-        (catch AddressException e
-          (log/trace "AddressException: " (.getMessage e)))
-        (catch MessagingException e
-          (log/trace "MessagingException: " (.getMessage e))))
-      (log/info "SENT EMAIL " id))
-    (ok)))
-
 (defn mydialog []
   (paper/dialog {:id "scrolling"}
                 (h/h2 "DataFab 2016 Application")
@@ -112,6 +84,7 @@
                                 (paper/textarea {:label "comments?"
                                                  :name "comments"
                                                  :textarea "textarea"
+                                                 :value ""
                                                  :input "input"}))
 
                                (h/div {:class "buttons"}

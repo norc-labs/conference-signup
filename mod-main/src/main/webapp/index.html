@@ -166,7 +166,7 @@
             <h2>DataFab 2016 Application</h2>
             <paper-dialog-scrollable>
                 <div class="horizontal-section">
-                    <form is="iron-form" id="formPost" method="get" action="/application">
+                    <form is="iron-form" id="formPost" method="post" action="/application">
                         <paper-input name="applicant-name" label="Applicant Name" required autofocus></paper-input>
                         <br></br>
                         <paper-input name="affiliation" label="Affiliation" required></paper-input>
@@ -189,7 +189,7 @@
                             <div>Please briefly describe your
                                 experience related to survey data
                                 fabrication.</div>
-                            <paper-textarea label="comments?" name="comments" textarea input></paper-textarea>
+                            <paper-textarea value="" label="comments?" name="comments" textarea input></paper-textarea>
                         </div>
                         <div class="buttons">
                             <paper-button dialog-dismiss>Cancel</paper-button>

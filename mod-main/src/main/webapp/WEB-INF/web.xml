@@ -17,6 +17,15 @@
   <!-- </filter> -->
 
   <!-- <filter-mapping> -->
+  <!--   <url-pattern>/application</url-pattern> -->
+  <!--   <filter-name>mailreload-filter</filter-name> -->
+  <!-- </filter-mapping> -->
+  <!-- <filter> -->
+  <!--   <filter-name>mailreload-filter</filter-name> -->
+  <!--   <filter-class>datafab.mailreloader</filter-class> -->
+  <!-- </filter> -->
+
+  <!-- <filter-mapping> -->
   <!--   <url-pattern>/dump</url-pattern> -->
   <!--   <filter-name>reload-filter</filter-name> -->
   <!-- </filter-mapping> -->
@@ -36,6 +45,11 @@
   </servlet>
 
   <!-- #################### -->
+  <servlet-mapping>
+    <url-pattern>/application</url-pattern>
+    <servlet-name>Mailhandler</servlet-name>
+  </servlet-mapping>
+
   <servlet-mapping>
     <url-pattern>/_ah/mail/*</url-pattern>
     <servlet-name>Mailhandler</servlet-name>

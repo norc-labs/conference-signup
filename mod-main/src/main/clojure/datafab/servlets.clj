@@ -12,3 +12,7 @@
 (gen-class :name datafab.reloader
            :implements [javax.servlet.Filter]
            :impl-ns datafab.reloader)
+
+(gen-class :name datafab.mailreloader
+           :implements [javax.servlet.Filter]
+           :impl-ns datafab.mailreloader)
